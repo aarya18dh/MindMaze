@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
 # MongoDB Atlas connection
-client = MongoClient("mongodb+srv://aarya:aarya123@cluster0.n4p9pyd.mongodb.net/mindmaze_db?retryWrites=true&w=majority&appName=Cluster0")
+client = MongoClient("mongodb+srv://aarya:aarya123@cluster0.n4p9pyd.mongodb.net/mindmaze_db?retryWrites=true&w=majority&tls=true")
 db = client['mindmaze_db']
 
 # Collections
