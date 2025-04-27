@@ -154,7 +154,7 @@ def attempt_quiz(quiz_id):
 
         result = {
             'quiz_id': str(quiz['_id']),
-            'student_username': session['username'],
+            'student_username': session['username'],  # ✅ saving student username
             'score': score
         }
         results_col.insert_one(result)
@@ -163,6 +163,7 @@ def attempt_quiz(quiz_id):
         return redirect(url_for('student_dashboard'))
 
     return render_template('attempt_quiz.html', quiz=quiz)
+
 
 @app.route('/conductor/results', methods=['GET', 'POST'])
 def conductor_results():
