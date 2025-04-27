@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Create New Quiz</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Quiz Name</label>
+        <input type="text" name="quiz_name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Total Questions</label>
+        <input type="number" name="total_questions" class="form-control" required min="1">
+    </div>
+    <button type="submit" class="btn btn-success">Create Quiz</button>
+</form>
+{% endblock %}

@@ -1,0 +1,6 @@
+pandas
+Flask
+pymongo
+dnspython
+gunicorn
+werkzeug

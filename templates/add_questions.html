@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Questions for Quiz: {{ quiz_name }}</h2>
+<form method="POST">
+    {% for i in range(1, total_questions + 1) %}
+        <h5>Question {{ i }}</h5>
+        <div class="mb-3">
+            <label class="form-label">Question Text</label>
+            <input type="text" name="question_{{ i }}" class="form-control" required>
+        </div>
+        {% for j in range(1,5) %}
+        <div class="mb-2">
+            <label class="form-label">Option {{ j }}</label>
+            <input type="text" name="option{{ j }}_{{ i }}" class="form-control" required>
+        </div>
+        {% endfor %}
+        <div class="mb-3">
+            <label class="form-label">Correct Option (1-4)</label>
+            <input type="number" name="correct_option_{{ i }}" min="1" max="4" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Time Limit (seconds)</label>
+            <input type="number" name="time_limit_{{ i }}" min="5" class="form-control" required>
+        </div>
+        <hr>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Save Quiz</button>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Delete a Quiz</h2>
+
+<form action="{{ url_for('delete_quiz') }}" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Enter Quiz Code to Delete</label>
+        <input type="text" name="quiz_code" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Delete Quiz</button>
+</form>
+
+<a href="{{ url_for('conductor_dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+
+{% endblock %}
+

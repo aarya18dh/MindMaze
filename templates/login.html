@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Login to MindMaze</h2>
+<form action="{{ url_for('login') }}" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <p class="mt-3">Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+</form>
+{% endblock %}

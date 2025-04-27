@@ -1,0 +1,34 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.navbar {
+    border-bottom: 2px solid #444;
+}
+
+.btn-primary, .btn-success, .btn-outline-light {
+    border-radius: 30px;
+}
+
+.form-control {
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.alert {
+    border-radius: 10px;
+}
+
+.list-group-item {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+}
+
+.list-group-item a.btn {
+    border-radius: 20px;
+}
