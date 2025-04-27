@@ -137,32 +137,33 @@ def student_join_quiz():
 
 @app.route('/quiz/<quiz_id>', methods=['GET', 'POST'])
 def attempt_quiz(quiz_id):
-    if 'username' not in session or session['role'] != 'student':
-        return redirect(url_for('home'))
-
     quiz = quizzes_col.find_one({'_id': ObjectId(quiz_id)})
 
     if request.method == 'POST':
-        answers = []
-        correct_count = 0
+        correct = 0
+        for idx, question in enumerate(quiz['questions']):
+            selected = request.form.get(f'question_{idx}')
+            if selected is not None:
+                selected = int(selected)
+                correct_option = int(question['correct_option'])
+                if selected == correct_option:
+                    correct += 1
 
-        for idx, q in enumerate(quiz['questions']):
-            selected = int(request.form.get(f'question_{idx}', -1))
-            answers.append(selected)
-            if selected == q['correct_option']:
-                correct_count += 1
+        total = len(quiz['questions'])
+        score = (correct / total) * 100
 
-        results_col.insert_one({
-            'student': session['username'],
-            'quiz_id': quiz_id,
-            'score': correct_count,
-            'total': len(quiz['questions']),
-            'answers': answers
-        })
+        result = {
+            'quiz_id': str(quiz['_id']),
+            'student_username': session['username'],
+            'score': score
+        }
+        results_col.insert_one(result)
 
-        return redirect(url_for('view_result', quiz_id=quiz_id))
+        flash(f'Quiz submitted successfully! Your Score: {score:.2f}%')
+        return redirect(url_for('student_dashboard'))
 
     return render_template('attempt_quiz.html', quiz=quiz)
+
 @app.route('/conductor/results', methods=['GET', 'POST'])
 def conductor_results():
     if 'username' not in session or session['role'] != 'conductor':
